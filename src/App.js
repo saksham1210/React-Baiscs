@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from "./Person/Person";
 
 // import styled from 'styled-components';
@@ -54,18 +54,19 @@ class App extends Component {
   }
 
   render() {
-    const style={
-      backgroundColor:'green',
-      color:'white',
-      font:'inherit',
-      border:'1px solid blue',
-      padding:'8px',
-      cursor:'pointer',
-      ':hover':{
-        backgroundColor:'lightgreen',
-        color:'black'
-      }
-    }
+    // const style={
+    //   backgroundColor:'green',
+    //   color:'white',
+    //   font:'inherit',
+    //   border:'1px solid blue',
+    //   padding:'8px',
+    //   cursor:'pointer',
+    //   ':hover':{
+    //     backgroundColor:'lightgreen',
+    //     color:'black'
+    //   }
+    // }
+    let btnClass="";
     let persons=null;
     if (this.state.showPersons){
       persons=(
@@ -81,25 +82,26 @@ class App extends Component {
           })}
         </div> 
       );
-      style.backgroundColor="red";
-      style[':hover']={
-        backgroundColor:'salmon',
-        color:'black'
-      }
+      btnClass=classes.Red;
+      // style.backgroundColor="red";
+      // style[':hover']={
+      //   backgroundColor:'salmon',
+      //   color:'black'
+      // }
 
     }
-    let classes =[];
+    let assignedclasses =[];
     if (this.state.persons.length<=2){
-      classes.push('red');
+      assignedclasses.push('red');
     }
     if (this.state.persons.length<=1){
-      classes.push('bold');
+      assignedclasses.push('bold');
     }
     return (
-        <div className="App">
+        <div className={classes.App}>
           <h1>Hi, I'm a React App</h1>
-          <p className={classes.join(' ')}>This is really working!</p>
-          <button style={style} alt={this.state.showPersons} onClick={this.togglePersonHandler}>
+          <p className={assignedclasses.join(' ')}>This is really working!</p>
+          <button className={btnClass} alt={this.state.showPersons} onClick={this.togglePersonHandler}>
               Toggle persons
           </button>
           {persons}
